@@ -1,0 +1,113 @@
+<!doctype html>
+
+<html>
+
+    <head>
+    <title>Agastya Kalra.</title>
+        
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+    <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700|Source+Sans+Pro' rel='stylesheet' type='text/css'>
+    <link href="global.css" rel="stylesheet">
+    <script type="text/javascript">
+    window.onload = function () {
+      var previ = 220
+      var dps = [{x: 1, y: 210}, {x: 2, y: 213}, {x: 3, y: 218}, {x: 4, y: 220}, {x: 5, y: 217},{x: 6, y: 210}, {x: 7, y: 213}, {x: 8, y: 218}, {x: 9, y: 220}, {x: 10, y: 217}];   //dataPoints. 
+
+      var chart = new CanvasJS.Chart("graphContainer",{
+        backgroundColor: "#222",
+        title :{
+            text: "Live Data",
+            fontColor: "#00ace6",
+            fontFamily: 'Montserrat'
+        },
+        axisX: {                        
+            title: "Time",
+            titleFontColor: "#dadada",
+            titleFontFamily: 'Montserrat'
+        },
+        axisY: {                        
+            title: "Blood Glucose Level",
+            titleFontColor: "#dadada",
+            titleFontFamily: 'Montserrat'
+        },
+        data: [{
+            type: "line",
+            backgroundColor: "#FFF",
+            dataPoints : dps
+        }]
+      });
+
+      chart.render();
+      var xVal = dps.length + 1;
+      var yVal = 225;    
+      var updateInterval = 1000;
+
+      var updateChart = function () {
+        
+        yVal = 225;
+        yVal = yVal +  Math.round(-35 + Math.random() *(+70));
+        dps.push({x: xVal,y: yVal});
+        
+        xVal++;
+        if (dps.length >  12)
+        {
+            dps.shift();                
+        }
+        document.getElementById("prev").innerHTML = previ;
+        previ = yVal;
+        document.getElementById("curr").innerHTML = yVal;
+
+        document.getElementById("pred").innerHTML = "Danger - High"
+        chart.render();     
+
+    // update chart after specified time. 
+
+};
+
+setInterval(function(){updateChart()}, updateInterval); 
+}
+</script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/canvasjs/1.7.0/canvasjs.min.js"></script>
+    </head>
+
+    <body>
+        
+    <!-- scripts -->
+    <script src="https://code.jquery.com/jquery-2.2.0.js"></script>
+    <script src="script.js"></script>
+       
+    <!-- content -->
+    <header>
+        <div id="header-bg"></div>
+        <h1 class="main-title">Live Free</h1>
+        <section id="subheader">
+            <h2>Free of fear,<br> Free of pain, <br>Free of diabetes.</h2>
+            <nav>
+            </nav>
+        </section>
+
+
+         <div id ="graphContainer">
+        </div>
+    </header>
+
+    <main>
+    <section id="blog" class="info blog-info">
+        <article id="blog-post-1">
+            <h2>Previous Blood Sugar</h2>
+            <h3 id="prev">267</h3>
+        </article>    
+        <article id="blog-post-1">
+            <h2>Current Blood Sugar</h2>
+            <h3 id="curr">223</h3>
+        </article> 
+        <article id="blog-post-1">
+            <h2>Predicted Blood Sugar</h2>
+            <h3 id="pred">High</h3>
+        </article> 
+    </section>
+    </main>
+    </body>
+</html>
