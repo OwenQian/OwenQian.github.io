@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>Step Up</title>
+  <link data-turbolinks-track="true" href="./Portfolio_files/application-436d465f7242fad4a8020802b51f4903.css" media="all" rel="stylesheet">
+  <script data-turbolinks-track="true" src="./Portfolio_files/application-68861cbfb16e66e0b4bf673653aa6e28.js"></script>
+  <meta content="authenticity_token" name="csrf-param">
+  <meta content="0HXsyxhTTHZJ2CSEW118CRXGhNgMtGAYdhwD6cOzDIA=" name="csrf-token">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="global.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+
+        <!-- content -->
+        <header>
+    	<div id="header-bg"> </div>
+            <h1 class="main-title">Owen Qian</h1>
+            <section id="subheader">
+                <h2>Chess player<br> Software Developer <br>Problem Solver</h2>
+                <nav>
+                    <ul>
+                        <li><a href="http://owenqian.me" id="back-link">HOME</a></li>
+                    </ul>
+                </nav>
+            </section>
+        </header>
+        <main>
+            <img src="step_up.png" style="width: 100%; height:30em; align=middle; ">
+            <div class="post-content">
+            <h1>Step Up</h1>
+            <div class="post-info">
+                <h2>February 2016</h2>
+                Links: <span class="post-tags"> <a href="https://github.com/OwenQian/Android-Pedometer"> GitHub </a></span>
+            </div>
+            <p> An Android Pedometer that accurately tracks your steps using Accelerometer readings.</p>
+            <h2> How it was made </h2>
+    	<p> Since a person's step follows a certain pattern, I took several steps and recorded the accelerometer data in a text file. Plotting the data in MATLAB, I realized that a step was not a simple up and down, but was composed of multiple oscillations. Using a finite state machine, a step was counted if and only if, the readings proceeded sequentially in the right order and direction. Two of the most important features implemented to increase the pedometers accuracy was the low and high pass filters and a reduced polling rate. Initially, the amount of noise from the readings made the step counting very unreliable and any little jerk or random movement could be interpreted as a step. In combination these techniques smoothed out the curves, making discrimination of a step much easier.</p>
+            <h2> Future Expansions </h2>
+            <p> While walking around testing the pedometer, I suddenly remembered an interesting idea from one of my favourite books "Little Brother" by Cory Doctorow. The protagonist went to a school that was strict enough to have a gait detection system in place to track its students. I had the idea to expand the pedometer to be a full-fledged gait recognizer. After calibrating it with several steps, the gait detector could be another mechanism for unlocking your phone!</p>
+    	<p>Additionally since I've been studying machine learning, I want to use a neural network to classify different readings from the accelerometer as steps or not.</p>
+           </div>
+        </main>
+	</body></html>
+
