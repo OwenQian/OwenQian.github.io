@@ -30,7 +30,7 @@
 		<nav>
 			<ul>
 				<li><a href="#about">Home</a></li>
-				<li><a href="projects/">Projects</a></li>
+				<li><a href="#projects">Projects</a></li>
 				<li><a href="#contact">Contact</a></li Porting code to work in C++ using OpenCV.>
 			</ul>
 		</nav>
@@ -56,16 +56,19 @@
 	<h1>projects</h1>
 	<a href="/projects/index.html"><h3>Checkout my Projects Portfolio!</h3></a>
 	<div class="projects-container">
+        <article id="pooker">
+            <h2> Pooker: A Not So Shitty Poker AI </h2>
+            <p>
+                Highly modular C++ project built culmulatively on git with over 100 commits over 2 months.
+                <br><br>Uses Monte Carlo Tree Search to determine most profitable action, simulating over 7 million outcomes each decision
+                <br><br>Properly allocated dynamic memory over 500,000 allocs without any memory leaks 
+            </p>
+            <a href="http://github.com/OwenQian/Pooker" class="more"> Learn More </a>
+        </article>
 		<article id="project-1">
 			<h2>Live Free</h2>
 			<p>PennApps XIII Winner! Predicts diabetic patients future blood sugar levels using artificial Neural Networks. Implemented stochastic, random-batch gradient descent for 91% predictive accuracy! </p>
 			<a href="http://devpost.com/software/live-free" class="more">Learn More</a>
-		</article>
-		<article id="project-2">
-			<h2>Step Up</h2>
-			<p>An Android pedometer that uses accelerometer readings to count steps. Invovles use of low-pass filter to reduce noise and finite state machines to discriminate between steps and non-steps.</p>
-			<p>I'm planning to train a neural network to handle the step detection instead of the finite state machine for higher accuracy.</p>
-			<a href="/projects/step_up.html" class="more">Learn More</a>
 		</article>
 	</div>
 </section>
