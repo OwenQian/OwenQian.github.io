@@ -1,5 +1,7 @@
 const cards = ['A', 'K', 'Q', 'J', 'T', '9', '8', '7', '6', '5', '4', '3', '2'];
 
+import {Range} from './calc.js'
+
 export class RangeUI {
     constructor(canvas, textBox, boxHeight = 40, boxWidth = 40) {
         this.selected =
@@ -82,13 +84,22 @@ export class RangeUI {
     }
 
     updateRange(rangeString) {
+        let expandedRangeStr = Range.parseRange(rangeString)[1];
         this.clearRange();
-        let hands = rangeString.split(",").map(x => x.trim());
+        let hands = expandedRangeStr.split(",").map(x => x.trim());
         for (let hand of hands) {
             if (hand.length < 2 || hand.length > 3)
                 continue;
             let i = cards.indexOf(hand[0]);
             let j = cards.indexOf(hand[1]);
+          
+            if (j < i) {
+                let temp = i;
+                i = j;
+                j = temp;
+            }
+
+
             if (i === -1 || j === -1)
                 continue;
             if (hand.length === 2 && i != j)
@@ -114,15 +125,19 @@ export class RangeUI {
                 let hand = i > j ? cards[j] + cards[i] + 's' : i < j ? cards [i] + cards[j] + 'o' : cards[i] + cards[j];
                 let hands = this.textBox.value.split(",").map(x => x.trim());
                 if (!hands.includes(hand)) {
-                    this.textBox.value += hand + ', ';
+                    this.textBox.value += ', ' + hand;
+                    // Remove leading and trailing commas
+                    this.textBox.value = this.textBox.value.replace(/(^, )|(, $)/g, "");
                 }
             }
         }
     }
 
     mouseCoordsToIndexes(mouseX, mouseY) {
-        let canvasX = mouseX - this.canvas.offsetLeft;
-        let canvasY = mouseY - this.canvas.offsetTop;
+        let rect = this.canvas.getBoundingClientRect();
+        let canvasX = mouseX - rect.left;
+        let canvasY = mouseY - rect.top;
+
         let i = Math.floor((canvasX - 1) / (this.boxWidth + 1));
         let j = Math.floor((canvasY - 1) / (this.boxHeight + 1));
         return [i, j];
